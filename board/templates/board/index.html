@@ -1,0 +1,9 @@
+{% if latest_message_list %}
+    <ul>
+    {% for message in latest_message_list %}
+        <li>{{ message.message_text }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No message are available.</p>
+{% endif %}
