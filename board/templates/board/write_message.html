@@ -1,0 +1,12 @@
+<h1>写留言</h1>
+
+<form action="{% url 'board:write_message' %}" method="post">
+    {% csrf_token %}
+    <label for="text-box">留言</label>
+    <textarea name="text-box" id="text-box" cols="30" rows=""></textarea>
+    <br>
+    <label for="wechat-box">微信号</label>
+    <input type="text" id="wechat-box" name="wechat-box">
+    <br>
+    <input type="submit" value="提交">
+</form>

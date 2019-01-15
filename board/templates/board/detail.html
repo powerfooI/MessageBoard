@@ -1,0 +1,15 @@
+<h1>留言详情</h1>
+
+
+
+<p><span style="color: red;">留言者微信ID：</span> {{ message.wechat_id }}</p>
+<p><span style="color: red;">留言时间：</span> {{ message.send_time }}</p>
+<p><span style="color: red;">留言内容</span> {{ message.message_text }}</p>
+
+<form action="{% url 'board:detail' message.id 1 %}" method="post">
+    {% csrf_token %}
+    <label for="text-box">回复</label>
+    <textarea name="text-box" id="text-box" cols="30" rows=""></textarea>
+    <br>
+    <input type="submit" value="提交">
+</form>

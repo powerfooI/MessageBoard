@@ -1,9 +1,17 @@
 {% if latest_message_list %}
     <ul>
     {% for message in latest_message_list %}
-        <li>{{ message.message_text }}</li>
+        <li>{{ message.message_text }}
+            {% if message.response_text %}
+                <li style="color:red;">回复：{{ message.response_text }}</li>
+            {% endif %}
+        </li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No message are available.</p>
 {% endif %}
+<a href="{% url 'board:index' last_page %}">上一页</a>
+<a href="{% url 'board:index' next_page %}">下一页</a>
+<br>
+<a href="{% url 'board:write_message' %}">我要留言</a>
