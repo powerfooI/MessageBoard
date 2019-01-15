@@ -1,0 +1,18 @@
+{% load static %}
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <title>留言板</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'board/css/bootstrap.min.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container text-center">
+        {% block mainbody %}
+            <p>Please overwrite this block!</p>
+        {% endblock %}
+    </div>
+    <script src="{% static 'board/js/bootstrap.min.js' %}"></script>
+  </body>
+</html>

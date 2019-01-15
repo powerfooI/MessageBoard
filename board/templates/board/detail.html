@@ -1,15 +1,22 @@
+{% extends "board/base.html" %}
+
+{% block mainbody %}
 <h1>留言详情</h1>
+<hr>
+<br>
+<div class="jumbotron">
+    <h3 class="display-3">{{ message.wechat_id }}</h3>
+    <p class="lead">"{{ message.message_text }}"</p>
+    <hr class="my-4">
+    <form action="{% url 'board:detail' message.id 1 %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="text-box">回复</label>
+            <textarea name="text-box" class="form-control" id="text-box" rows="3"></textarea>
+        </div>
+        <br>
+        <input type="submit" class="btn btn-primary" value="提交">
+    </form>
+</div>
 
-
-
-<p><span style="color: red;">留言者微信ID：</span> {{ message.wechat_id }}</p>
-<p><span style="color: red;">留言时间：</span> {{ message.send_time }}</p>
-<p><span style="color: red;">留言内容</span> {{ message.message_text }}</p>
-
-<form action="{% url 'board:detail' message.id 1 %}" method="post">
-    {% csrf_token %}
-    <label for="text-box">回复</label>
-    <textarea name="text-box" id="text-box" cols="30" rows=""></textarea>
-    <br>
-    <input type="submit" value="提交">
-</form>
+{% endblock %}

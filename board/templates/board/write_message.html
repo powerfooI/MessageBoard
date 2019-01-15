@@ -1,12 +1,22 @@
-<h1>写留言</h1>
+{% extends "board/base.html" %}
 
-<form action="{% url 'board:write_message' %}" method="post">
-    {% csrf_token %}
-    <label for="text-box">留言</label>
-    <textarea name="text-box" id="text-box" cols="30" rows=""></textarea>
-    <br>
-    <label for="wechat-box">微信号</label>
-    <input type="text" id="wechat-box" name="wechat-box">
-    <br>
-    <input type="submit" value="提交">
-</form>
+{% block mainbody %}
+<h1>写留言</h1>
+<hr>
+<br>
+<div class="jumbotron">
+    <form action="{% url 'board:write_message' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="wechat-box">微信号</label>
+            <input name="wechat-box" type="text" class="form-control" id="wechat-box">
+        </div>
+        <div class="form-group">
+            <label for="text-box">留言内容</label>
+            <textarea name="text-box" class="form-control" id="text-box" rows="3"></textarea>
+        </div>
+        <input class="btn btn-primary" type="submit" value="提交">
+    </form>
+</div>
+
+{% endblock %}
