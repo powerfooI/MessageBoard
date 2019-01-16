@@ -1,47 +1,69 @@
 {% extends "board/base.html" %}
 
 {% block mainbody %}
-    <h1>留言审核</h1>
-    <hr>
-    <br>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">留言板</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'board:index' %}">首页</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'board:write_message' %}">留言</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <a class="nav-link text-light" href="">管理</a>
+        </form>
+    </div>
+</nav>
+<div style="margin-top: 50px;">
     {% if need_to_check_list %}
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th width="10%" scope="col">留言人</th>
-                    <th width="10%" scope="col">留言时间</th>
-                    <th width="60%" scope="col">内容</th>
-                    <th width="7%" scope="col">状态</th>
-                    <th width="13%" scope="col">操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for message in need_to_check_list %}
-                <tr>
-                    <td>{{message.wechat_id}}</td>
-                    <td>{{message.send_time}}</td>
-                    <td>{{message.message_text}}</td>
-                    <td>
-                        {% if message.is_checked %}
-                            已通过
-                        {% else %}
-                            未审核
-                        {% endif %}
-                    </td>
-                    <td>
-                        <a href="{% url 'board:check_pass' message_id=message.id page_num=current_page %}">通过审核</a>
-                        <a href="{% url 'board:detail' message_id=message.id page_num=current_page %}">回复</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th width="10%" scope="col">留言人</th>
+                <th width="10%" scope="col">留言时间</th>
+                <th width="60%" scope="col">内容</th>
+                <th width="7%" scope="col">状态</th>
+                <th width="13%" scope="col">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for message in need_to_check_list %}
+            <tr>
+                <td>{{message.wechat_id}}</td>
+                <td>{{message.send_time}}</td>
+                <td>{{message.message_text}}</td>
+                <td>
+                    {% if message.is_checked %}
+                    已通过
+                    {% else %}
+                    未审核
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'board:check_pass' message_id=message.id page_num=current_page %}">通过审核</a>
+                    <a href="{% url 'board:detail' message_id=message.id page_num=current_page %}">回复</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
     {% else %}
-        <p>No message are available.</p>
+    <p>No message are available.</p>
     {% endif %}
     <br>
     <div class="text-center">
         <a class="btn btn-primary" href="{% url 'board:manage' last_page %}">上一页</a>
         <a class="btn btn-primary" href="{% url 'board:manage' next_page %}">下一页</a>
     </div>
+</div>
+
 {% endblock %}
