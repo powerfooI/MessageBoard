@@ -1,21 +1,35 @@
 {% extends "board/base.html" %}
 
 {% block mainbody %}
-    {% if latest_message_list %}
-    <ul>
-    {% for message in latest_message_list %}
-        <li>{{ message.message_text }}
-            {% if message.response_text %}
-                <li style="color:red;">回复：{{ message.response_text }}</li>
-            {% endif %}
-        </li>
-    {% endfor %}
-    </ul>
-    {% else %}
-    <p>No message are available.</p>
-    {% endif %}
-    <a href="{% url 'board:index' last_page %}">上一页</a>
-    <a href="{% url 'board:index' next_page %}">下一页</a>
+    <h1>留言墙</h1>
+    <hr>
     <br>
-    <a href="{% url 'board:write_message' %}">我要留言</a>
+    {% if latest_message_list %}
+        {% for message in latest_message_list %}
+            <div class="card mb-3 border-primary" style="margin:0 15%;">
+                <h4 class="card-header">{{ message.wechat_id }}</h4>
+                <div class="card-body">
+                    <h5 class="card-title">{{ message.message_text }}</h5>
+                    <h6 class="card-subtitle text-muted">{{ message.send_time }}</h6>
+                </div>
+                {% if message.response_text %}
+                    <hr>
+                    <div class="card-body">
+                        {{ message.response_text }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>There is no message on the board!</p>
+    {% endif %}
+    <div class="row justify-content-center">
+        <a class="btn btn-primary col-md-1" style="margin-right: 20px;" href="{% url 'board:index' last_page %}">上一页</a>
+        <a class="btn btn-primary col-md-1" style="margin-left: 20px;" href="{% url 'board:index' next_page %}">下一页</a>
+    </div>
+
+    <br>
+    <div class="row justify-content-center">
+        <a class="btn btn-danger btn-block col-md-2" href="{% url 'board:write_message' %}">我要留言</a>
+    </div>
 {% endblock %}
