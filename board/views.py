@@ -51,12 +51,11 @@ def manage(request, page_num=1):
 
 def write_message(request):
     if request.method == 'POST':
-        print('POST DICT', request.POST)
         new_message = Message()
         new_message.message_text = request.POST['text-box']
         new_message.wechat_id = request.POST['wechat-box']
         new_message.save()
-        return HttpResponseRedirect(reverse('board:index'), (1,))
+        return HttpResponseRedirect(reverse('board:index'))
     else:
         return render(request, 'board/write_message.html')
 
