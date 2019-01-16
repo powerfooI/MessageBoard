@@ -19,6 +19,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'board/static'),
 ]
 
+LOGIN_URL = '/login/'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -28,7 +30,7 @@ SECRET_KEY = 'hrzmz1z)!+1cl+3b5-*a-h^3p6)4@1-ltxas5j)wz%koti3tup'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

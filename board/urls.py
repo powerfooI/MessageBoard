@@ -5,6 +5,8 @@ from . import views
 app_name = 'board'
 urlpatterns = [
     path('index/', views.index, name='index'),
+    path('login/', views.manager_login, name="login"),
+    path('logout/', views.manager_logout, name='logout'),
     path('manage_the_message/', views.manage, name='manage'),
     path('index/<int:page_num>/', views.index, name='index'),
     path('manage_the_message/<int:page_num>/', views.manage, name='manage'),
