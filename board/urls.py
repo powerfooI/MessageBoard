@@ -13,4 +13,5 @@ urlpatterns = [
     path('write_message/', views.write_message, name='write_message'),
     path('check_pass/<int:message_id>/<int:page_num>/', views.check_pass, name='check_pass'),
     path('detail/<int:message_id>/<int:page_num>/', views.detail, name='detail'),
+    path('', views.index, name="index")
 ]
