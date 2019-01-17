@@ -1,17 +1,13 @@
 {% extends "board/base.html" %}
 
 {% block mainbody %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
     <a class="navbar-brand" href="#">管理留言板</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
 
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'board:index' %}">首页</span></a>
+                <a class="nav-link" href="{% url 'board:index' %}">首页</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'board:write_message' %}">留言</a>
