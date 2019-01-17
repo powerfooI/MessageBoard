@@ -16,13 +16,16 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'board:write_message' %}">留言</a>
             </li>
+
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <a class="nav-link text-light" href="{% url 'board:manage' %}">管理</a>
-        </form>
+        <ul class="navbar-nav navbar-right">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'board:manage' %}">管理</a>
+            </li>
+        </ul>
     </div>
 </nav>
-<div style="margin-top: 50px;">
+<div class="text-center" style="margin-top: 50px;">
     <div class="jumbotron">
         <form action="{% url 'board:login' %}" method="post">
             {% csrf_token %}

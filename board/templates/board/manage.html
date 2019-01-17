@@ -17,13 +17,16 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'board:write_message' %}">留言</a>
             </li>
+
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <a class="nav-link text-light" href="{% url 'board:logout' %}">注销</a>
-        </form>
+        <ul class="navbar-nav navbar-right">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'board:logout' %}">注销</a>
+            </li>
+        </ul>
     </div>
 </nav>
-<div style="margin-top: 50px; margin-bottom: 50px;">
+<div class="text-center" style="margin-top: 50px; margin-bottom: 50px;">
     {% if need_to_check_list %}
     <table class="table table-hover">
         <thead>
