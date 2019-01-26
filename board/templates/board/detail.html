@@ -1,43 +1,46 @@
 {% extends "board/base.html" %}
+{% load static %}
 
 {% block mainbody %}
-<nav class="navbar navbar-expand navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">管理留言板</a>
+    <nav class="navbar navbar-expand navbar-dark bg-light">
+        <a class="navbar-brand" href="">
+            <img src="{% static 'board/assets/top.png' %}" height="50" alt="Logo">
+        </a>
 
-    <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'board:index' %}">首页</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'board:write_message' %}">留言</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav navbar-right">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'board:logout' %}">注销</a>
-            </li>
-        </ul>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{% url 'board:index' %}">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{% url 'board:write_message' %}">留言</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{% url 'board:logout' %}">注销</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="text-center" style="margin-top:50px;">
+        <h1>留言详情</h1>
+        <div class="jumbotron">
+            <h3 class="display-3">{{ message.wechat_id }}</h3>
+            <p class="lead">"{{ message.message_text }}"</p>
+            <hr class="my-4">
+            <form action="{% url 'board:detail' message.id 1 %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="text-box">回复</label>
+                    <textarea required name="text-box" class="form-control" id="text-box" rows="3"></textarea>
+                </div>
+                <br>
+                <input type="submit" class="btn btn-primary" value="提交">
+            </form>
+            <a class="btn btn-primary" href="{% url 'board:manage' %}">返回</a>
+        </div>
     </div>
-</nav>
-<div class="text-center" style="margin-top:50px;">
-    <h1>留言详情</h1>
-    <div class="jumbotron">
-        <h3 class="display-3">{{ message.wechat_id }}</h3>
-        <p class="lead">"{{ message.message_text }}"</p>
-        <hr class="my-4">
-        <form action="{% url 'board:detail' message.id 1 %}" method="post">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="text-box">回复</label>
-                <textarea required name="text-box" class="form-control" id="text-box" rows="3"></textarea>
-            </div>
-            <br>
-            <input type="submit" class="btn btn-primary" value="提交">
-        </form>
-        <a class="btn btn-primary" href="{% url 'board:manage' %}">返回</a>
-    </div>
-</div>
 
 
 {% endblock %}

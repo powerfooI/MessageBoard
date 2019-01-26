@@ -1,21 +1,24 @@
 {% extends "board/base.html" %}
+{% load static %}
 
 {% block mainbody %}
 
-    <nav class="navbar navbar-expand navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">管理留言板</a>
+    <nav class="navbar navbar-expand navbar-dark bg-light">
+        <a class="navbar-brand" href="">
+            <img src="{% static 'board/assets/top.png' %}" height="50" alt="Logo">
+        </a>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'board:index' %}">首页</a>
+                <a class="nav-link text-dark" href="{% url 'board:index' %}">首页</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'board:write_message' %}">留言</a>
+                <a class="nav-link text-dark" href="{% url 'board:write_message' %}">留言</a>
             </li>
 
         </ul>
         <ul class="navbar-nav navbar-right">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'board:logout' %}">注销</a>
+                <a class="nav-link text-dark" href="{% url 'board:logout' %}">注销</a>
             </li>
         </ul>
     </nav>

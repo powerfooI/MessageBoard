@@ -1,19 +1,22 @@
 {% extends "board/base.html" %}
+{% load static %}
 
 {% block mainbody %}
-    <nav class="navbar navbar-expand navbar-dark bg-primary">
-        <a class="navbar-brand" href="">留言板</a>
+    <nav class="navbar navbar-expand navbar-dark bg-light">
+        <a class="navbar-brand" href="">
+            <img src="{% static 'board/assets/top.png' %}" height="50" alt="Logo">
+        </a>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'board:index' %}">首页</a>
+                <a class="nav-link text-dark" href="{% url 'board:index' %}">首页</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="">留言<span class="sr-only">(current)</span></a>
+                <a class="nav-link text-dark" href="">留言<span class="sr-only">(current)</span></a>
             </li>
         </ul>
         <ul class="navbar-nav navbar-right">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'board:manage' %}">管理</a>
+                <a class="nav-link text-dark" href="{% url 'board:manage' %}">管理</a>
             </li>
         </ul>
     </nav>
@@ -22,7 +25,7 @@
             <form action="{% url 'board:write_message' %}" method="post">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label for="wechat-box">微信号</label>
+                    <label for="wechat-box">昵称</label>
                     <input required name="wechat-box" type="text" class="form-control" id="wechat-box">
                 </div>
                 <div class="form-group">
