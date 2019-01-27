@@ -8,16 +8,16 @@
         </a>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link text-dark" href="#">首页 <span class="sr-only">(current)</span></a>
+                <a class="nav-link text-info lead" href="#">首页 <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="{% url 'board:write_message' %}">留言</a>
+                <a class="nav-link text-info lead" href="{% url 'board:write_message' %}">留言</a>
             </li>
 
         </ul>
         <ul class="navbar-nav navbar-right">
             <li class="nav-item">
-                <a class="nav-link text-dark" href="{% url 'board:manage' %}">管理</a>
+                <a class="nav-link text-info lead" href="{% url 'board:manage' %}">管理</a>
             </li>
         </ul>
     </nav>
@@ -25,11 +25,11 @@
     <div class="text-center" style="margin-top:50px; margin-bottom: 50px;">
         {% if latest_message_list %}
             {% for message in latest_message_list %}
-                <div class="card mb-3 border-primary" style="margin:0 15%;">
+                <div class="card mb-3 border-primary">
                     <h4 class="card-header">{{ message.wechat_id }}</h4>
                     <div class="card-body">
                         <h5 class="card-title">{{ message.message_text }}</h5>
-                        <h6 class="card-subtitle text-muted">{{ message.send_time }}</h6>
+                        <h6 class="card-subtitle text-muted">{{ message.send_time|date:"Y年n月j日" }}</h6>
                     </div>
                     {% if message.response_text %}
                         <div class="card-footer bg-light">
@@ -42,9 +42,18 @@
         {% else %}
             <p>There is no message on the board!</p>
         {% endif %}
-        <div class="row justify-content-center">
-            <a class="btn btn-primary" style="margin-right: 20px;" href="{% url 'board:index' last_page %}">上一页</a>
-            <a class="btn btn-primary" style="margin-left: 20px;" href="{% url 'board:index' next_page %}">下一页</a>
+        <div class="text-center">
+            {% if last_page == current_page %}
+                <a class="btn btn-primary disabled" href="{% url 'board:manage' last_page %}">上一页</a>
+            {% else %}
+                <a class="btn btn-primary" href="{% url 'board:manage' last_page %}">上一页</a>
+            {% endif %}
+            <span> 第{{ current_page }} / {{ total_pages }}页 </span>
+            {% if next_page == current_page %}
+                <a class="btn btn-primary disabled" href="{% url 'board:manage' next_page %}">下一页</a>
+            {% else %}
+                <a class="btn btn-primary" href="{% url 'board:manage' next_page %}">下一页</a>
+            {% endif %}
         </div>
     </div>
 

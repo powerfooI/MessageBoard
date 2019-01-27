@@ -12,11 +12,12 @@ from .models import Message
 def index(request, page_num=1):
     start = (page_num - 1) * 10
     latest_message_list = Message.objects.filter(is_checked=True).order_by('-send_time')[start:start + 10]
+    total_pages = int((Message.objects.count() - 1) / 10 + 1)
     if page_num == 1:
         last_page = 1
     else:
         last_page = page_num - 1
-    if len(latest_message_list) <= 10:
+    if page_num == total_pages:
         next_page = page_num
     else:
         next_page = page_num + 1
@@ -24,6 +25,8 @@ def index(request, page_num=1):
         'latest_message_list': latest_message_list,
         'next_page': next_page,
         'last_page': last_page,
+        'current_page': page_num,
+        'total_pages': total_pages
     }
     return render(request, 'board/index.html', context)
 
@@ -32,11 +35,12 @@ def index(request, page_num=1):
 def manage(request, page_num=1):
     start = (page_num - 1) * 10
     need_to_check_list = Message.objects.order_by('-send_time')[start:start + 10]
+    total_pages = int((Message.objects.count() - 1) / 10 + 1)
     if page_num == 1:
         last_page = 1
     else:
         last_page = page_num - 1
-    if len(need_to_check_list) <= 10:
+    if page_num == total_pages:
         next_page = page_num
     else:
         next_page = page_num + 1
@@ -45,6 +49,7 @@ def manage(request, page_num=1):
         'next_page': next_page,
         'last_page': last_page,
         'current_page': page_num,
+        'total_pages': total_pages
     }
     return render(request, 'board/manage.html', context)
 

@@ -9,16 +9,16 @@
         </a>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link text-dark" href="{% url 'board:index' %}">首页</a>
+                <a class="nav-link text-info lead" href="{% url 'board:index' %}">首页</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="{% url 'board:write_message' %}">留言</a>
+                <a class="nav-link text-info lead" href="{% url 'board:write_message' %}">留言</a>
             </li>
 
         </ul>
         <ul class="navbar-nav navbar-right">
             <li class="nav-item">
-                <a class="nav-link text-dark" href="{% url 'board:logout' %}">注销</a>
+                <a class="nav-link text-info lead" href="{% url 'board:logout' %}">注销</a>
             </li>
         </ul>
     </nav>
@@ -28,8 +28,8 @@
                 <thead>
                 <tr>
                     <th width="10%" scope="col">留言人</th>
-                    <th width="10%" scope="col">留言时间</th>
-                    <th width="60%" scope="col">内容</th>
+                    <th width="20%" scope="col">留言时间</th>
+                    <th width="50%" scope="col">内容</th>
                     <th width="7%" scope="col">状态</th>
                     <th width="13%" scope="col">操作</th>
                 </tr>
@@ -38,7 +38,7 @@
                 {% for message in need_to_check_list %}
                     <tr>
                         <td>{{ message.wechat_id }}</td>
-                        <td>{{ message.send_time }}</td>
+                        <td>{{ message.send_time|date:"Y年n月j日" }}</td>
                         <td>{{ message.message_text }}</td>
                         <td>
                             {% if message.is_checked %}
@@ -60,8 +60,17 @@
         {% endif %}
         <br>
         <div class="text-center">
-            <a class="btn btn-primary" href="{% url 'board:manage' last_page %}">上一页</a>
-            <a class="btn btn-primary" href="{% url 'board:manage' next_page %}">下一页</a>
+            {% if last_page == current_page %}
+                <a class="btn btn-primary disabled" href="{% url 'board:manage' last_page %}">上一页</a>
+            {% else %}
+                <a class="btn btn-primary" href="{% url 'board:manage' last_page %}">上一页</a>
+            {% endif %}
+            <span> 第{{ current_page }} / {{ total_pages }}页 </span>
+            {% if next_page == current_page %}
+                <a class="btn btn-primary disabled" href="{% url 'board:manage' next_page %}">下一页</a>
+            {% else %}
+                <a class="btn btn-primary" href="{% url 'board:manage' next_page %}">下一页</a>
+            {% endif %}
         </div>
     </div>
 

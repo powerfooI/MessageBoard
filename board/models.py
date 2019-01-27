@@ -4,7 +4,10 @@ from django.db import models
 
 class Message(models.Model):
     def __str__(self):
-        return str(self.send_time.date())
+        suffix = ''
+        if len(self.message_text) > 30:
+            suffix = '...'
+        return '(' + str(self.send_time.date()) + ')' + self.message_text[:30] + suffix
 
     message_text = models.TextField()
     send_time = models.DateTimeField(auto_now_add=True)
