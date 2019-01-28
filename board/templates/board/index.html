@@ -44,17 +44,16 @@
         {% endif %}
         <div class="text-center">
             {% if last_page == current_page %}
-                <a class="btn btn-primary disabled" href="{% url 'board:manage' last_page %}">上一页</a>
+                <a class="btn btn-primary disabled" href="{% url 'board:index' last_page %}">上一页</a>
             {% else %}
-                <a class="btn btn-primary" href="{% url 'board:manage' last_page %}">上一页</a>
+                <a class="btn btn-primary" href="{% url 'board:index' last_page %}">上一页</a>
             {% endif %}
             <span> 第{{ current_page }} / {{ total_pages }}页 </span>
             {% if next_page == current_page %}
-                <a class="btn btn-primary disabled" href="{% url 'board:manage' next_page %}">下一页</a>
+                <a class="btn btn-primary disabled" href="{% url 'board:index' next_page %}">下一页</a>
             {% else %}
-                <a class="btn btn-primary" href="{% url 'board:manage' next_page %}">下一页</a>
+                <a class="btn btn-primary" href="{% url 'board:index' next_page %}">下一页</a>
             {% endif %}
         </div>
     </div>
-
 {% endblock %}
