@@ -2,18 +2,7 @@
 {% load static %}
 
 {% block mainbody %}
-    <nav class="navbar navbar-expand navbar-dark bg-light">
-        <a class="navbar-brand" href="">
-            <img src="{% static 'board/assets/top.png' %}" alt="Logo">
-        </a>
-        <div class="navbar-text text-dark text-center lead" style="margin: 0 auto;font-size: 30px;font-weight: bold;">留 言 板</div>
 
-        <ul class="navbar-nav navbar-right">
-            <li class="nav-item">
-                <a class="nav-link text-info lead text-center" style="width: 85px;" href="{% url 'board:manage' %}">管理</a>
-            </li>
-        </ul>
-    </nav>
     <div class="text-center" style="margin-top: 50px;">
         <div class="jumbotron">
             <form action="{% url 'board:login' %}" method="post">
@@ -26,8 +15,17 @@
                     <label for="password-box">密码</label>
                     <input name="password" type="password" class="form-control" id="password-box">
                 </div>
-                <input class="btn btn-primary" type="submit" value="登陆">
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                        <input class="btn btn-primary btn-block" type="submit" value="登陆">
+                    </div>
+                </div>
             </form>
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <a class="btn btn-primary btn-block" href="{% url 'board:index' %}">返回</a>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

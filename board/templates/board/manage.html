@@ -1,20 +1,23 @@
 {% extends "board/base.html" %}
 {% load static %}
 
+{% block navbar %}
+<nav class="navbar navbar-expand navbar-dark bg-light">
+    <a class="navbar-brand" href="">
+        <img src="{% static 'board/assets/top.png' %}" alt="Logo">
+    </a>
+    <div class="navbar-text text-dark text-center lead" style="margin: 0 auto;font-size: 30px;font-weight: bold;">留言板
+    </div>
+
+    <ul class="navbar-nav navbar-right">
+        <li class="nav-item">
+            <a class="nav-link text-info lead text-center" style="width: 85px;" href="{% url 'board:logout' %}">注销</a>
+        </li>
+    </ul>
+</nav>
+{% endblock %}
+
 {% block mainbody %}
-
-    <nav class="navbar navbar-expand navbar-dark bg-light">
-        <a class="navbar-brand" href="">
-            <img src="{% static 'board/assets/top.png' %}" alt="Logo">
-        </a>
-        <div class="navbar-text text-dark text-center lead" style="margin: 0 auto;font-size: 30px;font-weight: bold;">留 言 板</div>
-
-        <ul class="navbar-nav navbar-right">
-            <li class="nav-item">
-                <a class="nav-link text-info lead text-center" style="width: 85px;" href="{% url 'board:logout' %}">注销</a>
-            </li>
-        </ul>
-    </nav>
     <div class="text-center" style="margin-top: 50px; margin-bottom: 50px;">
         {% if need_to_check_list %}
             <table class="table table-hover">
@@ -44,7 +47,7 @@
                             {% endif %}
                         </td>
                         <td>
-                            <a href="{% url 'board:check_pass' message_id=message.id page_num=current_page %}">通过审核</a>
+                            <a href="{% url 'board:check_pass' message_id=message.id page_num=current_page %}">通过</a>
                             <a href="{% url 'board:detail' message_id=message.id page_num=current_page %}">回复</a>
                         </td>
                     </tr>

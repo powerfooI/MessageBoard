@@ -1,19 +1,24 @@
 {% extends "board/base.html" %}
 {% load static %}
 
-{% block mainbody %}
+{% block navbar %}
     <nav class="navbar navbar-expand navbar-dark bg-light">
         <a class="navbar-brand" href="">
             <img src="{% static 'board/assets/top.png' %}" alt="Logo">
         </a>
-        <div class="navbar-text text-dark text-center lead" style="margin: 0 auto;font-size: 30px;font-weight: bold;">留 言 板</div>
+        <div class="navbar-text text-dark text-center lead" style="margin: 0 auto;font-size: 30px;font-weight: bold;">留言板
+        </div>
 
         <ul class="navbar-nav navbar-right">
             <li class="nav-item">
-                <a class="nav-link text-info lead text-center" style="width: 85px;" href="{% url 'board:logout' %}">注销</a>
+                <a class="nav-link text-info lead text-center" style="width: 85px;"
+                   href="{% url 'board:logout' %}">注销</a>
             </li>
         </ul>
     </nav>
+{% endblock %}
+
+{% block mainbody %}
     <div class="text-center" style="margin-top:50px;">
         <h1>留言详情</h1>
         <div class="jumbotron">

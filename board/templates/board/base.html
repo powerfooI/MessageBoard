@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>严肃的人口学八卦</title>
 
     <!-- Bootstrap core CSS -->
@@ -9,8 +10,24 @@
     <link rel="stylesheet/less" href="{% static 'board/css/customStyle.less' %}">
 
 </head>
-<body class="my-container">
+<body>
 <div class="container">
+    {% block navbar %}
+        <nav class="navbar navbar-expand navbar-dark bg-light">
+            <a class="navbar-brand" href="">
+                <img src="{% static 'board/assets/top.png' %}" alt="Logo">
+            </a>
+            <div class="navbar-text text-dark text-center lead"
+                 style="margin: 0 auto;font-size: 30px;font-weight: bold;">留言板
+            </div>
+
+            <ul class="navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a class="nav-link text-info lead text-center" style="width: 85px;" href="{% url 'board:manage' %}">管理</a>
+                </li>
+            </ul>
+        </nav>
+    {% endblock %}
     {% block mainbody %}
         <p>Please overwrite this block!</p>
     {% endblock %}
