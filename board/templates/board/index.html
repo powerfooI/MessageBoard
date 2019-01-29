@@ -4,12 +4,13 @@
 {% block mainbody %}
     <nav class="navbar navbar-expand navbar-dark bg-light">
         <a class="navbar-brand" href="">
-            <img src="{% static 'board/assets/top.png' %}" height="" alt="Logo">
+            <img src="{% static 'board/assets/top.png' %}" alt="Logo">
         </a>
-        <ul class="navbar-nav mr-auto"></ul>
+        <div class="navbar-text text-dark text-center lead" style="margin: 0 auto;font-size: 30px;font-weight: bold;">留 言 板</div>
+
         <ul class="navbar-nav navbar-right">
             <li class="nav-item">
-                <a class="nav-link text-info lead" href="{% url 'board:manage' %}">管理</a>
+                <a class="nav-link text-info lead text-center" style="width: 85px;" href="{% url 'board:manage' %}">管理</a>
             </li>
         </ul>
     </nav>
