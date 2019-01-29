@@ -6,14 +6,8 @@
         <a class="navbar-brand" href="">
             <img src="{% static 'board/assets/top.png' %}" height="50" alt="Logo">
         </a>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link text-info lead" href="{% url 'board:index' %}">首页</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link text-info lead" href="">留言<span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
+        <ul class="navbar-nav mr-auto"></ul>
+
         <ul class="navbar-nav navbar-right">
             <li class="nav-item">
                 <a class="nav-link text-info lead" href="{% url 'board:manage' %}">管理</a>

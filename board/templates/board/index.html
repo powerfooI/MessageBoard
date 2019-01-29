@@ -4,17 +4,9 @@
 {% block mainbody %}
     <nav class="navbar navbar-expand navbar-dark bg-light">
         <a class="navbar-brand" href="">
-            <img src="{% static 'board/assets/top.png' %}" height="50" alt="Logo">
+            <img src="{% static 'board/assets/top.png' %}" height="" alt="Logo">
         </a>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link text-info lead" href="#">首页 <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-info lead" href="{% url 'board:write_message' %}">留言</a>
-            </li>
-
-        </ul>
+        <ul class="navbar-nav mr-auto"></ul>
         <ul class="navbar-nav navbar-right">
             <li class="nav-item">
                 <a class="nav-link text-info lead" href="{% url 'board:manage' %}">管理</a>
@@ -42,7 +34,15 @@
         {% else %}
             <p>There is no message on the board!</p>
         {% endif %}
+        <div class="row justify-content-center">
+            <div class="col-sm-offset-4-4 col-sm-5">
+                <a href="{% url 'board:write_message' %}" class="btn btn-primary btn-block">我要留言</a>
+            </div>
+        </div>
+        <br>
+
         <div class="text-center">
+            <a class="btn btn-primary" href="{% url 'board:index' 1 %}">首页</a>
             {% if last_page == current_page %}
                 <a class="btn btn-primary disabled" href="{% url 'board:index' last_page %}">上一页</a>
             {% else %}
@@ -54,6 +54,9 @@
             {% else %}
                 <a class="btn btn-primary" href="{% url 'board:index' next_page %}">下一页</a>
             {% endif %}
+            <a class="btn btn-primary" href="{% url 'board:index' 99999 %}">尾页</a>
         </div>
+
     </div>
+
 {% endblock %}

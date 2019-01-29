@@ -7,15 +7,8 @@
         <a class="navbar-brand" href="">
             <img src="{% static 'board/assets/top.png' %}" height="50" alt="Logo">
         </a>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link text-info lead" href="{% url 'board:index' %}">首页</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-info lead" href="{% url 'board:write_message' %}">留言</a>
-            </li>
+        <ul class="navbar-nav mr-auto"></ul>
 
-        </ul>
         <ul class="navbar-nav navbar-right">
             <li class="nav-item">
                 <a class="nav-link text-info lead" href="{% url 'board:logout' %}">注销</a>
@@ -28,10 +21,10 @@
                 <thead>
                 <tr>
                     <th width="10%" scope="col">留言人</th>
-                    <th width="20%" scope="col">留言时间</th>
-                    <th width="50%" scope="col">内容</th>
-                    <th width="7%" scope="col">状态</th>
-                    <th width="13%" scope="col">操作</th>
+                    <th width="15%" scope="col">留言时间</th>
+                    <th width="45%" scope="col">内容</th>
+                    <th width="15%" scope="col">状态</th>
+                    <th width="15%" scope="col">操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -43,6 +36,9 @@
                         <td>
                             {% if message.is_checked %}
                                 已通过
+                                {% if message.response_text %}
+                                    (已回复)
+                                {% endif %}
                             {% else %}
                                 未审核
                             {% endif %}

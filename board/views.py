@@ -10,9 +10,11 @@ from .models import Message
 
 
 def index(request, page_num=1):
+    total_pages = int((Message.objects.filter(is_checked=True).count() - 1) / 10 + 1)
+    if page_num >= 99999:
+        page_num = total_pages
     start = (page_num - 1) * 10
     latest_message_list = Message.objects.filter(is_checked=True).order_by('-send_time')[start:start + 10]
-    total_pages = int((Message.objects.filter(is_checked=True).count() - 1) / 10 + 1)
     if page_num == 1:
         last_page = 1
     else:
